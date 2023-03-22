@@ -1,34 +1,39 @@
 Description: >
-  UdaPeople frontend stack.
-
+  Cloudfront distribution for UdaPeople.
 Parameters:
-  ID:
+  WorkflowID:
     Description: Unique identifier.
     Type: String
 
+
 Resources:
-  WebsiteBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub "udapeople-${ID}"
-      AccessControl: PublicRead
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: 404.html
   
-  WebsiteBucketPolicy:
-    Type: AWS::S3::BucketPolicy
+  CloudFrontOriginAccessIdentity:
+    Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
     Properties:
-      Bucket: !Ref 'WebsiteBucket'
-      PolicyDocument:
-        Statement:
-        - Sid: PublicReadForGetBucketObjects
-          Effect: Allow
-          Principal: '*'
-          Action: s3:GetObject
-          Resource: !Join ['', ['arn:aws:s3:::', !Ref 'WebsiteBucket', /*]]
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Origin Access Identity for Serverless Static Website
+
+  WebpageCDN:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !Sub "udapeople-${WorkflowID}.s3.amazonaws.com"
+            Id: webpage
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+        Enabled: True
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: False
+          TargetOriginId: webpage
+          ViewerProtocolPolicy: allow-all
 
 Outputs:
-  WebsiteURL:
-    Value: !GetAtt WebsiteBucket.WebsiteURL
+  WorkflowID:
+    Value: !Sub ${WorkflowID}
     Description: URL for website hosted on S3
+    Export:
+      Name: WorkflowID
