@@ -1,0 +1,28 @@
+---
+- name: Upgrade npm
+  become: true
+  shell: |
+    npm install -g npm@latest
+
+- name: Copy backend package
+  unarchive:
+    src: /root/project/backend.tar.gz
+    dest: /home/ubuntu/udapeople_app
+
+- name: Build backend
+  ignore_errors: yes
+  shell: |
+    cd /home/ubuntu/udapeople_app/backend
+    npm i
+    npm run build
+
+- name: Stop and delete already running server
+  ignore_errors: yes
+  command: pm2 delete all
+
+- name: Start server
+  become: true
+  shell: |
+    cd /home/ubuntu/udapeople_app/backend/dist
+    pm2 start -f ./main.js
+    pm2 ls
