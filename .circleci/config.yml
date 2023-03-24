@@ -238,14 +238,14 @@ jobs:
           name: Send migration status to kvdb.io
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
- 		        then
- 			          # If you are using kvdb.io, generate the bucket ID "9GE4jRtKznmVKRfvdBABBe" in your local terminal first
+            then
+                # If you are using kvdb.io, generate the bucket ID "9GE4jRtKznmVKRfvdBABBe" in your local terminal first
                 echo "Database migration is successful"
- 			          curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+                curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             else
                 echo "Database migration is fail"
                 curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
-     	      fi
+            fi
      - destroy-environment:
           workflowID: ${CIRCLE_WORKFLOW_ID:0:7}     
 
@@ -349,9 +349,9 @@ jobs:
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
             then
-            	return 0
+              return 0
             else
-            	return 1
+              return 1
             fi
       - run:
           name: Frontend smoke test.
@@ -360,7 +360,7 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-            	# Change this to 0 after the job fails
+              # Change this to 0 after the job fails
               return 1
             else
               return 1
