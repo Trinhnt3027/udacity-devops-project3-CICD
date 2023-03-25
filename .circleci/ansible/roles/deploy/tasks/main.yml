@@ -6,7 +6,7 @@
 
 - name: Copy backend package
   unarchive:
-    src: /root/project/backend.tar.gz
+    src: /root/project/artifact-backend.tar.gz
     dest: /home/ubuntu/udapeople_app
 
 - name: Build backend
