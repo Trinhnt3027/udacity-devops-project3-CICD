@@ -22,6 +22,15 @@
 
 - name: Start server
   become: true
+  environment:
+    ENVIRONMENT: "{{ lookup('env', 'ENVIRONMENT') }}"
+    TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
+    TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES') }}"
+    TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST') }}"
+    TYPEORM_PORT: "{{ lookup('env', 'TYPEORM_PORT') }}"
+    TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME') }}"
+    TYPEORM_PASSWORD: "{{ lookup('env', 'TYPEORM_PASSWORD') }}"
+    TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE') }}"
   shell: |
     cd /home/ubuntu/udapeople_app/dist
     pm2 start -f ./main.js
@@ -30,21 +39,3 @@
 - name: Print log of Start server shell command
   debug:
     var: shell_output.stdout_lines
-
-- name: Print message
-  debug:
-    msg: "The value of ENVIRONMENT is {{ ENVIRONMENT }}"
-  debug:
-    msg: "The value of TYPEORM_CONNECTION is {{ TYPEORM_CONNECTION }}"
-  debug:
-    msg: "The value of TYPEORM_ENTITIES is {{ TYPEORM_ENTITIES }}"
-  debug:
-    msg: "The value of TYPEORM_HOST is {{ TYPEORM_HOST }}"
-  debug:
-    msg: "The value of TYPEORM_PORT is {{ TYPEORM_PORT }}"
-  debug:
-    msg: "The value of TYPEORM_USERNAME is {{ TYPEORM_USERNAME }}"
-  debug:
-    msg: "The value of TYPEORM_PASSWORD is {{ TYPEORM_PASSWORD }}"
-  # debug:
-  #   msg: "The value of TYPEORM_DATABASE is {{ TYPEORM_DATABASE }}"
