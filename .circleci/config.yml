@@ -274,14 +274,14 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - attach_workspace:
-          at: .
       - run:
           name: Install dependencies
           command: |
             yum install -y tar gzip curl
             curl -sL https://rpm.nodesource.com/setup_16.x | bash -
             yum install -y nodejs
+      - attach_workspace:
+          at: .
       - run:
           name: Get backend url
           command: |
@@ -324,14 +324,11 @@ jobs:
             apt install tar -y
             apt install ansible -y
             which ansible
+            pip install awscli
       - run:
           name: Deploy backend
           command: |
-            cd backend
-            npm i
-            npm run build
-            cd ..
-            # Zip the directory
+            pwd
             tar -C backend -czvf artifact-backend.tar.gz .
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
