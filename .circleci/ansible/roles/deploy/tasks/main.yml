@@ -1,9 +1,4 @@
 ---
-- name: Upgrade npm
-  become: true
-  shell: |
-    npm install -g npm@latest
-
 - name: Copy backend package
   unarchive:
     src: /root/project/artifact-backend.tar.gz
