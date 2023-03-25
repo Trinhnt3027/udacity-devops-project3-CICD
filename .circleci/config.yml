@@ -278,7 +278,7 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip curl
-            curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+            curl -sL https://rpm.nodesource.com/setup_10.x | bash -
             yum install -y nodejs
       - attach_workspace:
           at: .
@@ -396,7 +396,7 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip curl
-            curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+            curl -sL https://rpm.nodesource.com/setup_10.x | bash -
             yum install -y nodejs
       - run:
           name: Update cloudfront distribution
