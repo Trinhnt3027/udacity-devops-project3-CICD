@@ -33,6 +33,16 @@
     TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE') }}"
   shell: |
     cd /home/ubuntu/udapeople_app/dist
+
+    echo "${ENVIRONMENT}"
+    echo "${TYPEORM_CONNECTION}"
+    echo "${TYPEORM_ENTITIES}"
+    echo "${TYPEORM_HOST}"
+    echo "${TYPEORM_PORT}"
+    echo "${TYPEORM_USERNAME}"
+    echo "${TYPEORM_PASSWORD}"
+    echo "${TYPEORM_DATABASE}"
+
     pm2 start -f ./main.js
   register: shell_output
 
