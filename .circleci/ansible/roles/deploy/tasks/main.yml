@@ -33,17 +33,6 @@
     TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE') }}"
   shell: |
     cd /home/ubuntu/udapeople_app
-
-    echo "Environtment variable:"
-    echo "1=${ENVIRONMENT}"
-    echo "2=${TYPEORM_CONNECTION}"
-    echo "3=${TYPEORM_ENTITIES}"
-    echo "4=${TYPEORM_HOST}"
-    echo "5=${TYPEORM_PORT}"
-    echo "6=${TYPEORM_USERNAME}"
-    echo "7=${TYPEORM_PASSWORD}"
-    echo "8=${TYPEORM_DATABASE}"
-
     pm2 start npm -- run "start:dev"
   register: shell_output
 
