@@ -25,6 +25,11 @@
   shell: |
     cd /home/ubuntu/udapeople_app/dist
     pm2 start -f ./main.js
+  register: shell_output
+
+- name: Print log of Start server shell command
+  debug:
+    var: shell_output.stdout_lines
 
 - name: Print message
   debug:
@@ -41,5 +46,5 @@
     msg: "The value of TYPEORM_USERNAME is {{ TYPEORM_USERNAME }}"
   debug:
     msg: "The value of TYPEORM_PASSWORD is {{ TYPEORM_PASSWORD }}"
-  debug:
-    msg: "The value of TYPEORM_DATABASE is {{ TYPEORM_DATABASE }}"
+  # debug:
+  #   msg: "The value of TYPEORM_DATABASE is {{ TYPEORM_DATABASE }}"
