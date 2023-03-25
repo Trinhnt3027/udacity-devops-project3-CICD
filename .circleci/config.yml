@@ -360,7 +360,7 @@ jobs:
           name: Backend smoke test.
           command: |
             BACKEND_IP=$(curl --insecure https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/BACKEND_IP_${CIRCLE_WORKFLOW_ID:0:7})
-            export API_URL="http://${BACKEND_IP}:3030"
+            API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
             then

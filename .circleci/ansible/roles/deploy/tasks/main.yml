@@ -3,7 +3,7 @@
   file:
     path: /home/ubuntu/udapeople_app
     state: directory
-    
+
 - name: Copy backend package
   unarchive:
     src: /root/project/artifact-backend.tar.gz
@@ -12,7 +12,7 @@
 - name: Build backend
   ignore_errors: yes
   shell: |
-    cd /home/ubuntu/udapeople_app/backend
+    cd /home/ubuntu/udapeople_app
     npm i
     npm run build
 
@@ -23,6 +23,7 @@
 - name: Start server
   become: true
   shell: |
-    cd /home/ubuntu/udapeople_app/backend/dist
+    cd /home/ubuntu/udapeople_app/dist
     pm2 start -f ./main.js
+    echo "server app:"
     pm2 ls
