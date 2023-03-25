@@ -1,4 +1,9 @@
 ---
+- name: Ensure target directory exists
+  file:
+    path: /home/ubuntu/udapeople_app
+    state: directory
+    
 - name: Copy backend package
   unarchive:
     src: /root/project/artifact-backend.tar.gz
