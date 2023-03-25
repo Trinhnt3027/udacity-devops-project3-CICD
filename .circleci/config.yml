@@ -216,6 +216,7 @@ jobs:
             apt-get update -y
             apt install ansible -y
             which ansible
+            pip install awscli
       - run:
           name: Configure server
           working_directory: ./.circleci/ansible
