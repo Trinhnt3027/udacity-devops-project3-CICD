@@ -399,6 +399,16 @@ jobs:
             curl -sL https://rpm.nodesource.com/setup_10.x | bash -
             yum install -y nodejs
       - run:
+          name: Store  old workflow ID
+          working_directory: ./.circleci/files
+          command: |
+            OLD_WORKFLOW_ID=$(aws cloudformation list-exports \
+              --query "Exports[?Name==\`WorkflowID\`].Value" \
+              --no-paginate --output text)
+            echo "OLD_WORKFLOW_ID=$OLD_WORKFLOW_ID"
+            curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/OLD_WORKFLOW_ID  -d ${OLD_WORKFLOW_ID}
+            
+      - run:
           name: Update cloudfront distribution
           command: |
             aws cloudformation deploy \
@@ -422,9 +432,7 @@ jobs:
       - run:
           name: Get old stack workflow id, Remove old stacks and files
           command: |
-            export OldWorkflowID=$(aws cloudformation \
-                      list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-                      --no-paginate --output text)
+            OldWorkflowID=$(curl --insecure https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/OLD_WORKFLOW_ID)
             echo OldWorkflowID: "${OldWorkflowID}"
             echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
 
