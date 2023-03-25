@@ -38,7 +38,7 @@ For your submission, please submit the following:
   1. Job failed because of compile errors. ![SCREENSHOT01](screenshots/SCR01_build_backend_failed.JPG)
   1. Job failed because of unit tests. ![SCREENSHOT02](screenshots/SCR02_test_backend_failed.JPG)
   1. Job that failed because of vulnerable packages. ![SCREENSHOT03](screenshots/SCR03_scan_backend_failed.JPG)
-  1. An alert from one of your failed builds. ![SCREENSHOT04](screenshots/SCR04_failed_alert.JPG)
+  1. An alert from one of your failed builds. ![SCREENSHOT04](screenshots/SCR04_failed_alert.png)
   1. Appropriate job failure for infrastructure creation. ![SCREENSHOT05](screenshots/SCR05_deploy_backend_fail.JPG)
   1. Appropriate job failure for the smoke test job. ![SCREENSHOT06](screenshots/SCR06_smock_test_front_fail.JPG)
   1. Successful rollback after a failed smoke test. ![SCREENSHOT07](screenshots/SCR07_rollback_success.JPG)
