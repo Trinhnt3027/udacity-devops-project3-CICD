@@ -30,10 +30,10 @@ For your submission, please submit the following:
 
 - A text file named `urls.txt` including:
   1. Public Url to GitHub repository (not private) [URL01](https://github.com/Trinhnt3027/udacity-devops-project3-CICD)
-  1. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02](http://udapeople-3e11b17.s3.amazonaws.com/index.html)
+  1. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02](http://udapeople-c8746be.s3.amazonaws.com/index.html)
   1. Public URL for your CloudFront distribution (aka, your blue production front-end) [URL03](http://d2e4p47n71t7nd.cloudfront.net)
-  1. Public URLs to deployed application back-end in EC2 [URL04](http://ec2-54-152-127-33.compute-1.amazonaws.com:3030)
-  1. Public URL to your Prometheus Server [URL05](http://ec2-3-83-191-185.compute-1.amazonaws.com:9090//targets)
+  1. Public URLs to deployed application back-end in EC2 [URL04](http://ec2-44-203-29-149.compute-1.amazonaws.com:3030)
+  1. Public URL to your Prometheus Server [URL05](http://ec2-3-84-196-182.compute-1.amazonaws.com:9090/targets)
 - Your screenshots in JPG or PNG format, named using the screenshot number listed in the instructions. These screenshots should be included in your code repository in the root folder.
   1. Job failed because of compile errors. [SCREENSHOT01](screenshots/SCR01_build_backend_failed.JPG)
   1. Job failed because of unit tests. [SCREENSHOT02](screenshots/SCR02_test_backend_failed.JPG)
@@ -45,7 +45,7 @@ For your submission, please submit the following:
   1. Successful promotion job. [SCREENSHOT08](screenshots/SCR08_update_clountfront.JPG)
   1. Successful cleanup job. [SCREENSHOT09](screenshots/SCR09_cleanup_success.JPG)
   1. Only deploy on pushed to `master` branch. [SCREENSHOT10](screenshots/SCR10_build_dev-branch.JPG)
-  1. Provide a screenshot of a graph of your EC2 instance including available memory, available disk space, and CPU usage. [SCREENSHOT11](screenshots/SCR11_prometheus_graph.JPG)
+  1. Provide a screenshot of a graph of your EC2 instance including available memory, available disk space, and CPU usage. [SCREENSHOT11](screenshots/SCR11_prometheus_graph.png)
   1. Provide a screenshot of an alert that was sent by Prometheus. [SCREENSHOT12](screenshots/SCR12_alert_email.JPG)
 
 - Your presentation should be in PDF format named "presentation.pdf" and should be included in your code repository root folder. 
