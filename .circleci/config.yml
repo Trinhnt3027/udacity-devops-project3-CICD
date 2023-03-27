@@ -40,7 +40,7 @@ commands:
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
             SUCCESS=$(curl --insecure https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7})
             echo $SUCCESS
-            if(( $SUCCESS==1 )); 
+            if(( "$SUCCESS"=="success" )); 
             then
               cd ./backend
               npm install
@@ -259,10 +259,10 @@ jobs:
             then
                 # If you are using kvdb.io, generate the bucket ID "9GE4jRtKznmVKRfvdBABBe" in your local terminal first
                 echo "Database migration is successful"
-                curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+                curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d "success"
             else
                 echo "Database migration is fail"
-                curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
+                curl https://kvdb.io/D95LMhufn1kSGEBRsYCYNi/MIGRATION_STATUS_${CIRCLE_WORKFLOW_ID:0:7}  -d "failure"
             fi
       - destroy-environment:
           workflowID: ${CIRCLE_WORKFLOW_ID:0:7}     
